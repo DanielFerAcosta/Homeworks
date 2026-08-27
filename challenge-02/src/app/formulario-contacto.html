@@ -1,0 +1,21 @@
+<div class="form-container">
+
+  <h2>Agregar contacto</h2>
+
+  <input
+    type="text"
+    placeholder="Nombre"
+    (change)="captureName($event)"
+  />
+
+  <input
+    type="text"
+    placeholder="Teléfono"
+    (change)="capturePhone($event)"
+  />
+
+  <button (click)="addContact()">
+    Agregar contacto
+  </button>
+
+</div>
