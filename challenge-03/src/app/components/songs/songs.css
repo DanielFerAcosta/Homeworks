@@ -1,0 +1,99 @@
+.songs-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1f1f1f;
+}
+
+.songs-container h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.current-song {
+  background: linear-gradient(135deg, #6a5af9, #a084f9);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 14px rgba(106, 90, 249, 0.35);
+}
+
+.current-song h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+}
+
+.current-song p {
+  margin: 0 0 8px;
+  opacity: 0.9;
+}
+
+.current-song span {
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.songs-container > h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7f7fb;
+  border: 1px solid #e6e6ef;
+  border-radius: 10px;
+  padding: 12px 16px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.song:hover {
+  background: #eef0ff;
+  transform: translateY(-1px);
+}
+
+.song strong {
+  display: block;
+  font-size: 1rem;
+  color: #1f1f1f;
+}
+
+.song p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.song span {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.song button {
+  border: none;
+  background: #6a5af9;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s ease;
+}
+
+.song button:hover {
+  background: #5646e0;
+}

@@ -1,0 +1,53 @@
+<div class="search-container">
+
+  <h1>🔎 Search</h1>
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      [(ngModel)]="currentSearch"
+      placeholder="Search..."
+    />
+
+    <button (click)="search()">
+      Search
+    </button>
+
+  </div>
+
+  <div class="navigation">
+
+    <button (click)="goBack()">
+      ← Back
+    </button>
+
+    <button (click)="goForward()">
+      Forward →
+    </button>
+
+  </div>
+
+  <div class="current">
+
+    <h2>Current page</h2>
+
+    <p *ngIf="getCurrentSearch()">
+      {{ getCurrentSearch() }}
+    </p>
+
+  </div>
+
+  <div class="history">
+
+    <h2>Search history</h2>
+
+    <div *ngFor="let search of getHistory()">
+
+      <p>{{ search }}</p>
+
+    </div>
+
+  </div>
+
+</div>
