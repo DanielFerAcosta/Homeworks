@@ -1,0 +1,236 @@
+<div class="contenedor">
+
+  <header class="encabezado">
+    <h1>Sistema de Gestión de Clínica</h1>
+    <p>Gestión de turnos, historial y médicos de guardia</p>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- AGREGAR PACIENTE -->
+  <!-- ============================= -->
+
+  <section class="panel">
+
+    <h2>Agregar paciente</h2>
+
+    <div class="formulario">
+
+      <input
+        type="text"
+        placeholder="Nombre del paciente"
+        [(ngModel)]="nombre"
+      >
+
+      <input
+        type="number"
+        placeholder="Edad"
+        [(ngModel)]="edad"
+      >
+
+      <input
+        type="text"
+        placeholder="Motivo de consulta"
+        [(ngModel)]="motivo"
+      >
+
+      <button (click)="agregarPaciente()">
+        Agregar paciente
+      </button>
+
+    </div>
+
+    @if (mensaje) {
+      <p class="mensaje">
+        {{ mensaje }}
+      </p>
+    }
+
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- PACIENTES EN ESPERA -->
+  <!-- ============================= -->
+
+  <section class="panel">
+
+    <h2>Pacientes en espera</h2>
+
+    @if (pacientes.length === 0) {
+
+      <p>
+        No hay pacientes en espera.
+      </p>
+
+    } @else {
+
+      @for (paciente of pacientes; track paciente.id) {
+
+        <div class="tarjeta">
+
+          <h3>{{ paciente.nombre }}</h3>
+
+          <p>
+            Edad: {{ paciente.edad }}
+          </p>
+
+          <p>
+            Motivo: {{ paciente.motivo }}
+          </p>
+
+        </div>
+
+      }
+
+    }
+
+    <button
+      (click)="atenderPaciente()"
+      [disabled]="pacientes.length === 0"
+    >
+      Atender siguiente paciente
+    </button>
+
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- HISTORIAL DE ATENCIÓN -->
+  <!-- ============================= -->
+
+  <section class="panel">
+
+    <h2>Historial de atención</h2>
+
+    @if (historial.length === 0) {
+
+      <p>
+        No existen pacientes atendidos.
+      </p>
+
+    } @else {
+
+      @for (paciente of historial; track paciente.id) {
+
+        <div class="tarjeta">
+
+          <h3>{{ paciente.nombre }}</h3>
+
+          <p>
+            Edad: {{ paciente.edad }}
+          </p>
+
+          <p>
+            Motivo: {{ paciente.motivo }}
+          </p>
+
+        </div>
+
+      }
+
+    }
+
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- MÉDICOS DE GUARDIA -->
+  <!-- ============================= -->
+
+  <section class="panel">
+
+    <h2>Médicos de guardia</h2>
+
+    <div class="medico-actual">
+
+      <h3>Médico actual</h3>
+
+      @if (medicoActual) {
+
+        <p>
+          <strong>{{ medicoActual.nombre }}</strong>
+        </p>
+
+        <p>
+          Especialidad: {{ medicoActual.especialidad }}
+        </p>
+
+      }
+
+    </div>
+
+
+    <h3>Lista de médicos</h3>
+
+    @for (medico of medicos; track medico.id) {
+
+      <div class="tarjeta">
+
+        <h3>{{ medico.nombre }}</h3>
+
+        <p>
+          Especialidad: {{ medico.especialidad }}
+        </p>
+
+      </div>
+
+    }
+
+
+    <p class="informacion">
+      El médico de guardia cambia automáticamente cada 10 segundos.
+    </p>
+
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- COMITÉ ADMINISTRATIVO -->
+  <!-- ============================= -->
+
+  <section class="panel">
+
+    <h2>Comité administrativo</h2>
+
+    <div class="miembro-actual">
+
+      <h3>Miembro actual</h3>
+
+      <p>
+        {{ miembroComiteActual }}
+      </p>
+
+    </div>
+
+
+    <div class="botones">
+
+      <button (click)="anteriorComite()">
+        Anterior
+      </button>
+
+      <button (click)="siguienteComite()">
+        Siguiente
+      </button>
+
+    </div>
+
+
+    <h3>Miembros del comité</h3>
+
+    @for (miembro of comite; track $index) {
+
+      <div class="tarjeta">
+
+        <p>
+          {{ miembro }}
+        </p>
+
+      </div>
+
+    }
+
+  </section>
+
+</div>
