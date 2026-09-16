@@ -1,0 +1,132 @@
+<div class="contenedor">
+
+  <h1>Challenge 04 - Pila de Libros</h1>
+
+  <section class="formulario">
+
+    <h2>Agregar nuevo libro</h2>
+
+    <form (ngSubmit)="agregarLibro()">
+
+      <div class="campo">
+        <label for="nombre">Nombre del libro</label>
+
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          [(ngModel)]="nuevoLibro.nombre"
+          placeholder="Ingrese el nombre del libro">
+      </div>
+
+      <div class="campo">
+        <label for="isbn">ISBN</label>
+
+        <input
+          type="text"
+          id="isbn"
+          name="isbn"
+          [(ngModel)]="nuevoLibro.isbn"
+          placeholder="Ingrese el ISBN">
+      </div>
+
+      <div class="campo">
+        <label for="autor">Autor</label>
+
+        <input
+          type="text"
+          id="autor"
+          name="autor"
+          [(ngModel)]="nuevoLibro.autor"
+          placeholder="Ingrese el autor">
+      </div>
+
+      <div class="campo">
+        <label for="editorial">Editorial</label>
+
+        <input
+          type="text"
+          id="editorial"
+          name="editorial"
+          [(ngModel)]="nuevoLibro.editorial"
+          placeholder="Ingrese la editorial">
+      </div>
+
+      <button type="submit">
+        Agregar libro
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <section class="pila">
+
+    <div class="titulo-pila">
+      <h2>Pila de libros</h2>
+
+      <span>
+        Cantidad: {{ pila.size() }}
+      </span>
+    </div>
+
+    @if (obtenerLibros().length === 0) {
+
+      <p class="vacio">
+        La pila está vacía.
+      </p>
+
+    } @else {
+
+      <div class="libros">
+
+        @for (libro of obtenerLibros(); track $index) {
+
+          <div class="libro">
+
+            <div class="numero">
+              {{ $index + 1 }}
+            </div>
+
+            <div class="informacion">
+
+              <h3>{{ libro.nombre }}</h3>
+
+              <p>
+                <strong>ISBN:</strong>
+                {{ libro.isbn }}
+              </p>
+
+              <p>
+                <strong>Autor:</strong>
+                {{ libro.autor }}
+              </p>
+
+              <p>
+                <strong>Editorial:</strong>
+                {{ libro.editorial }}
+              </p>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+    <button
+      class="boton-retirar"
+      type="button"
+      (click)="retirarLibro()">
+
+      Retirar último libro
+
+    </button>
+
+  </section>
+
+</div>
