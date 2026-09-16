@@ -1,0 +1,27 @@
+<div class="container">
+
+  <h1>Challenge 2 - Angular</h1>
+
+  <p>
+    Verificar si un número es par o impar
+  </p>
+
+  <input 
+    type="number" 
+    #numero
+    placeholder="Ingrese un número"
+  >
+
+  <div class="buttons">
+
+    <button (click)="verificarNumero(+numero.value)">
+      Función Regular
+    </button>
+
+    <button (click)="verificarNumeroArrow(+numero.value)">
+      Función Arrow
+    </button>
+
+  </div>
+
+</div>
