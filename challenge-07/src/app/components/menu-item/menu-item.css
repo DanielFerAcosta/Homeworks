@@ -1,0 +1,34 @@
+.menu-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px 12px;
+
+  color: #d5d5d5;
+  font-size: 11px;
+
+  box-sizing: border-box;
+}
+
+.arrow {
+  font-size: 7px;
+  color: #bdbdbd;
+}
+
+.submenu {
+  margin: 0;
+  padding: 0;
+  padding-left: 12px;
+}
+
+.selected .menu-title {
+  background-color: #1d5b8f;
+  color: white;
+}

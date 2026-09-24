@@ -1,0 +1,17 @@
+<aside class="sidebar">
+
+  <nav>
+
+    <ul class="menu">
+
+      @for (item of menuItems; track item.title) {
+
+        <app-menu-item [item]="item"></app-menu-item>
+
+      }
+
+    </ul>
+
+  </nav>
+
+</aside>

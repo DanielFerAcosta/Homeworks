@@ -1,0 +1,32 @@
+<li
+  class="menu-item"
+  [class.selected]="item.title === 'Security & Privacy'"
+>
+
+  <div class="menu-title">
+
+    <span>
+      {{ item.title }}
+    </span>
+
+    @if (item.children?.length) {
+      <span class="arrow">▲</span>
+    }
+
+  </div>
+
+  @if (item.children?.length) {
+
+    <ul class="submenu">
+
+      @for (child of item.children; track child.title) {
+
+        <app-menu-item [item]="child"></app-menu-item>
+
+      }
+
+    </ul>
+
+  }
+
+</li>

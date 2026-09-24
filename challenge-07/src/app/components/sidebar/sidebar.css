@@ -1,0 +1,21 @@
+.sidebar {
+  width: 180px;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: #202326;
+
+  padding: 12px 0;
+
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
+}
