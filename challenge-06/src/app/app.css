@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f4f7;
+}
+
+.contenedor {
+  width: 95%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  color: #222;
+  font-size: 40px;
+}
+
+.descripcion {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.busqueda,
+.recorridos,
+.arbol {
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.formulario {
+  display: flex;
+  gap: 10px;
+}
+
+.formulario input {
+  flex: 1;
+  padding: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 16px;
+}
+
+.formulario input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.formulario button {
+  padding: 12px 25px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #4f46e5;
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background-color: #3730a3;
+}
+
+.resultado {
+  margin-top: 15px;
+  padding: 12px;
+
+  background-color: #f1f1f1;
+
+  border-radius: 6px;
+
+  font-weight: bold;
+}
+
+.recorrido {
+  padding: 12px;
+  margin-bottom: 10px;
+
+  background-color: #f5f5f5;
+
+  border-radius: 6px;
+
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.recorrido strong {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 10px;
+}
+
+.tree-container {
+  width: 100%;
+  overflow-x: auto;
+
+  display: flex;
+  justify-content: center;
+
+  min-height: 550px;
+}

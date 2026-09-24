@@ -1,0 +1,88 @@
+<div class="contenedor">
+
+  <h1>Challenge 06</h1>
+
+  <p class="descripcion">
+    Árbol Binario de Búsqueda
+  </p>
+
+
+  <section class="busqueda">
+
+    <h2>Buscar un valor</h2>
+
+    <div class="formulario">
+
+      <input
+        type="number"
+        [(ngModel)]="numeroBusqueda"
+        placeholder="Ingrese un número"
+      >
+
+      <button
+        type="button"
+        (click)="buscarNumero()">
+
+        Buscar
+
+      </button>
+
+    </div>
+
+
+    @if (resultadoBusqueda !== '') {
+
+      <p class="resultado">
+        {{ resultadoBusqueda }}
+      </p>
+
+    }
+
+  </section>
+
+
+  <section class="recorridos">
+
+    <h2>Recorridos del árbol</h2>
+
+    <div class="recorrido">
+
+      <strong>Inorden:</strong>
+
+      {{ tree.inorder().join(' → ') }}
+
+    </div>
+
+
+    <div class="recorrido">
+
+      <strong>Preorden:</strong>
+
+      {{ tree.preorder().join(' → ') }}
+
+    </div>
+
+
+    <div class="recorrido">
+
+      <strong>Postorden:</strong>
+
+      {{ tree.postorder().join(' → ') }}
+
+    </div>
+
+  </section>
+
+
+  <section class="arbol">
+
+    <h2>Representación visual con D3</h2>
+
+    <div
+      #treeContainer
+      class="tree-container">
+    </div>
+
+  </section>
+
+</div>
