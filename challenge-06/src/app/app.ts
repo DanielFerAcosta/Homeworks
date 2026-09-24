@@ -18,7 +18,7 @@ import { TreeNode } from './models/tree-node';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class AppComponent implements AfterViewInit {
+export class App implements AfterViewInit {
 
   @ViewChild('treeContainer')
   treeContainer!: ElementRef;
