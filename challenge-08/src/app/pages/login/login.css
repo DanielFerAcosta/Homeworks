@@ -1,0 +1,37 @@
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  background: #102b4a;
+  font-family: Arial, sans-serif;
+}
+
+.login-card {
+  width: min(430px, 90vw);
+  padding: 32px;
+  border-radius: 16px;
+  background: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+button {
+  padding: 12px;
+}
+
+button {
+  border: 0;
+  border-radius: 7px;
+  background: #168f7d;
+  color: white;
+  cursor: pointer;
+}
+
+.error-message {
+  color: #b02020;
+}

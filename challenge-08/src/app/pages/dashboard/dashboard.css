@@ -1,0 +1,42 @@
+.dashboard-page {
+  min-height: 100vh;
+  background: #f3f7fa;
+  font-family: Arial, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 8vw;
+  background: #102b4a;
+}
+
+.logo,
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+nav button {
+  padding: 8px 12px;
+  border: 1px solid #55d8c1;
+  border-radius: 6px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.welcome-card {
+  width: min(900px, 85vw);
+  margin: 70px auto;
+  padding: 42px;
+  border-radius: 16px;
+  background: #168f7d;
+  color: white;
+}

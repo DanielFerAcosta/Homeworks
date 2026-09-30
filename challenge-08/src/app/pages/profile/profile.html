@@ -1,0 +1,46 @@
+<main class="profile-page">
+  <header class="topbar">
+    <a routerLink="/dashboard" class="logo">
+      Challenge 08
+    </a>
+
+    <nav>
+      <a routerLink="/dashboard">Inicio</a>
+      <a routerLink="/profile">Perfil</a>
+
+      <button type="button" (click)="logout()">
+        Cerrar sesión
+      </button>
+    </nav>
+  </header>
+
+  <section class="profile-card">
+    <div class="avatar">
+      {{ authService.username().charAt(0).toUpperCase() }}
+    </div>
+
+    <p class="eyebrow">RUTA PRIVADA 2</p>
+    <h1>Perfil de usuario</h1>
+
+    <div class="profile-data">
+      <p>
+        <span>Nombre:</span>
+        <strong>{{ authService.username() }}</strong>
+      </p>
+
+      <p>
+        <span>Correo:</span>
+        <strong>{{ authService.currentUser() }}</strong>
+      </p>
+
+      <p>
+        <span>Estado:</span>
+        <strong class="status">Sesión activa</strong>
+      </p>
+    </div>
+
+    <a routerLink="/dashboard">
+      ← Volver al dashboard
+    </a>
+  </section>
+</main>
