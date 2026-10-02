@@ -1,16 +1,11 @@
 <main class="login-page">
   <section class="login-card">
-    <div class="brand">
-      <div class="brand-icon">C8</div>
+    <p class="eyebrow">CHALLENGE 08</p>
 
-      <div>
-        <p class="eyebrow">ANGULAR CHALLENGE</p>
-        <h1>Bienvenido</h1>
-      </div>
-    </div>
+    <h1>Iniciar sesión</h1>
 
     <p class="description">
-      Inicia sesión para acceder a las páginas privadas.
+      Ingresa para visualizar los árboles de los Challenges 06 y 07.
     </p>
 
     <form (ngSubmit)="login()" #loginForm="ngForm">
@@ -33,21 +28,23 @@
         type="password"
         name="password"
         [(ngModel)]="password"
-        placeholder="Ingresa tu contraseña"
+        placeholder="Contraseña"
         autocomplete="current-password"
         required
       />
 
-      <p class="error-message" *ngIf="errorMessage">
-        {{ errorMessage }}
-      </p>
+      @if (errorMessage) {
+        <p class="error-message">
+          {{ errorMessage }}
+        </p>
+      }
 
       <button type="submit" [disabled]="loginForm.invalid">
         Iniciar sesión
       </button>
     </form>
 
-    <div class="demo-credentials">
+    <div class="credentials">
       <strong>Credenciales de prueba</strong>
       <span>Correo: user@mail.com</span>
       <span>Contraseña: 123</span>

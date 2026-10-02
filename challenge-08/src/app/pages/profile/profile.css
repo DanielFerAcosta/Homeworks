@@ -1,71 +1,116 @@
-.profile-page {
+:host {
+  display: block;
   min-height: 100vh;
   background: #f3f7fa;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.topbar {
+.profile-topbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 18px 8vw;
   background: #102b4a;
 }
 
-.logo,
-nav a {
-  color: white;
+.profile-topbar a {
+  color: #ffffff;
+  font-weight: 700;
   text-decoration: none;
 }
 
-nav {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-nav button {
-  padding: 8px 12px;
+.profile-topbar button {
   border: 1px solid #55d8c1;
-  border-radius: 6px;
+  border-radius: 7px;
+  padding: 8px 12px;
   background: transparent;
-  color: white;
+  color: #7ee8d6;
   cursor: pointer;
+  font: inherit;
+  font-weight: 700;
 }
 
 .profile-card {
   width: min(600px, 88vw);
   margin: 65px auto;
-  padding: 40px;
-  border-radius: 16px;
-  background: white;
+  padding: 42px;
+  border: 1px solid #dde7ee;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 35px rgba(27, 57, 88, 0.08);
   text-align: center;
 }
 
 .avatar {
   display: grid;
-  width: 75px;
-  height: 75px;
+  width: 82px;
+  height: 82px;
   place-items: center;
-  margin: auto;
+  margin: 0 auto 24px;
   border-radius: 50%;
-  background: #168f7d;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
+  background: linear-gradient(135deg, #1cad98, #17699a);
+  color: #ffffff;
+  font-size: 2.1rem;
+  font-weight: 900;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #188b79;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+h1 {
+  margin: 0 0 30px;
+  color: #20344b;
 }
 
 .profile-data {
-  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   text-align: left;
 }
 
-.profile-data p {
+.profile-data div {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
-  background: #f4f7f9;
+  gap: 20px;
+  border-radius: 9px;
+  padding: 15px;
+  background: #f5f8fa;
 }
 
-.status {
-  color: #168f7d;
+.profile-data span {
+  color: #708197;
+  font-size: 0.85rem;
+}
+
+.profile-data strong {
+  color: #293f59;
+}
+
+.profile-data .status {
+  color: #11846f;
+}
+
+@media (max-width: 600px) {
+  .profile-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .profile-card {
+    margin-top: 35px;
+    padding: 28px 20px;
+  }
+
+  .profile-data div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
 }

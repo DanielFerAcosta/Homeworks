@@ -1,17 +1,10 @@
 <main class="profile-page">
-  <header class="topbar">
-    <a routerLink="/dashboard" class="logo">
-      Challenge 08
-    </a>
+  <header class="profile-topbar">
+    <a routerLink="/dashboard">← Volver al dashboard</a>
 
-    <nav>
-      <a routerLink="/dashboard">Inicio</a>
-      <a routerLink="/profile">Perfil</a>
-
-      <button type="button" (click)="logout()">
-        Cerrar sesión
-      </button>
-    </nav>
+    <button type="button" (click)="logout()">
+      Cerrar sesión
+    </button>
   </header>
 
   <section class="profile-card">
@@ -19,28 +12,24 @@
       {{ authService.username().charAt(0).toUpperCase() }}
     </div>
 
-    <p class="eyebrow">RUTA PRIVADA 2</p>
+    <p class="eyebrow">RUTA PRIVADA</p>
     <h1>Perfil de usuario</h1>
 
     <div class="profile-data">
-      <p>
-        <span>Nombre:</span>
+      <div>
+        <span>Nombre de usuario</span>
         <strong>{{ authService.username() }}</strong>
-      </p>
+      </div>
 
-      <p>
-        <span>Correo:</span>
+      <div>
+        <span>Correo electrónico</span>
         <strong>{{ authService.currentUser() }}</strong>
-      </p>
+      </div>
 
-      <p>
-        <span>Estado:</span>
+      <div>
+        <span>Estado</span>
         <strong class="status">Sesión activa</strong>
-      </p>
+      </div>
     </div>
-
-    <a routerLink="/dashboard">
-      ← Volver al dashboard
-    </a>
   </section>
 </main>

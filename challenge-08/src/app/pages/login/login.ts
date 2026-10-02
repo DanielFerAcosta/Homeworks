@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.spec';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +26,12 @@ export class Login {
       return;
     }
 
-    const isValidUser = this.authService.login(
+    const validLogin = this.authService.login(
       this.email,
       this.password
     );
 
-    if (!isValidUser) {
+    if (!validLogin) {
       this.errorMessage =
         'Credenciales incorrectas. Usa user@mail.com y contraseña 123.';
       return;

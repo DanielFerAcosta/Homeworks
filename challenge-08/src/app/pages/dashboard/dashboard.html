@@ -1,36 +1,127 @@
-<main class="dashboard-page">
-  <header class="topbar">
-    <a routerLink="/dashboard" class="logo">
-      Challenge 08
-    </a>
+<header class="topbar">
+  <div>
+    <p class="top-label">CHALLENGE 08</p>
 
-    <nav>
-      <a routerLink="/dashboard" routerLinkActive="active">
-        Inicio
-      </a>
+    <h1>Bienvenido, {{ authService.username() }}</h1>
 
-      <a routerLink="/profile" routerLinkActive="active">
-        Perfil
-      </a>
-
-      <button type="button" (click)="logout()">
-        Cerrar sesión
-      </button>
-    </nav>
-  </header>
-
-  <section class="welcome-card">
-    <p class="eyebrow">RUTA PRIVADA 1</p>
-
-    <h1>Hola, {{ authService.username() }}</h1>
-
-    <p>
-      Has iniciado sesión correctamente con:
-      <strong>{{ authService.currentUser() }}</strong>
+    <p class="top-description">
+      Integración de los árboles desarrollados en los Challenges 06 y 07.
     </p>
+  </div>
 
-    <a routerLink="/profile" class="go-profile">
-      Ver mi perfil →
-    </a>
+  <button type="button" (click)="logout()">
+    Cerrar sesión
+  </button>
+</header>
+
+<main class="dashboard-content">
+  <section class="panel">
+    <div class="section-heading">
+      <p class="eyebrow binary">CHALLENGE 06</p>
+
+      <h2>Árbol binario de búsqueda</h2>
+
+      <p>
+        Búsqueda, recorridos y representación visual del árbol
+        usando D3.
+      </p>
+    </div>
+
+    <div class="search-form">
+      <input
+        type="number"
+        name="numeroBusqueda"
+        [(ngModel)]="numeroBusqueda"
+        placeholder="Ingrese un número. Ejemplo: 50"
+      />
+
+      <button type="button" (click)="buscarNumero()">
+        Buscar
+      </button>
+    </div>
+
+    @if (resultadoBusqueda !== '') {
+      <p class="search-result">
+        {{ resultadoBusqueda }}
+      </p>
+    }
+
+    <section class="recorridos">
+      <h3>Recorridos del árbol</h3>
+
+      <p>
+        <strong>Inorden:</strong>
+        {{ tree.inorder().join(' → ') }}
+      </p>
+
+      <p>
+        <strong>Preorden:</strong>
+        {{ tree.preorder().join(' → ') }}
+      </p>
+
+      <p>
+        <strong>Postorden:</strong>
+        {{ tree.postorder().join(' → ') }}
+      </p>
+    </section>
+
+    <div #treeContainer class="binary-tree-canvas"></div>
+  </section>
+
+  <section class="panel">
+    <div class="section-heading">
+      <p class="eyebrow nary">CHALLENGE 07</p>
+
+      <h2>Árbol N-ario del menú lateral</h2>
+
+      <p>
+        Se muestra un árbol de menús donde cada nodo puede contener
+        una lista de hijos. La plantilla se llama a sí misma para
+        recorrer cualquier nivel.
+      </p>
+    </div>
+
+    <aside class="sidebar-tree">
+      <ng-container
+        [ngTemplateOutlet]="menuNodes"
+        [ngTemplateOutletContext]="{ $implicit: menuTree }"
+      ></ng-container>
+
+      <ng-template #menuNodes let-nodes>
+        <ul class="tree-list">
+          @for (node of nodes; track node.title) {
+            <li>
+              <div
+                class="menu-node"
+                [class.selected]="node.title === 'Security & Privacy'"
+              >
+                <span class="node-title">
+                  {{ node.title }}
+                </span>
+
+                @if (node.component) {
+                  <span class="node-component">
+                    {{ node.component }}
+                  </span>
+                }
+
+                @if (node.children?.length) {
+                  <span class="arrow">▲</span>
+                }
+              </div>
+
+              @if (node.children?.length) {
+                <ng-container
+                  [ngTemplateOutlet]="menuNodes"
+                  [ngTemplateOutletContext]="{
+                    $implicit: node.children
+                  }"
+                ></ng-container>
+              }
+            </li>
+          }
+        </ul>
+      </ng-template>
+    </aside>
   </section>
 </main>

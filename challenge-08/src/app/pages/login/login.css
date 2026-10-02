@@ -1,37 +1,119 @@
+:host {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .login-page {
   display: grid;
   min-height: 100vh;
   place-items: center;
-  background: #102b4a;
-  font-family: Arial, sans-serif;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, #35c5b2 0, transparent 33%),
+    linear-gradient(135deg, #10233f, #1a4873);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .login-card {
-  width: min(430px, 90vw);
-  padding: 32px;
-  border-radius: 16px;
-  background: white;
+  width: min(100%, 430px);
+  padding: 36px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(6, 19, 36, 0.3);
+}
+
+.eyebrow {
+  margin: 0 0 7px;
+  color: #168f7d;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+h1 {
+  margin: 0;
+  color: #1b2d45;
+  font-size: 1.9rem;
+}
+
+.description {
+  margin: 20px 0 25px;
+  color: #68788c;
+  line-height: 1.5;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-input,
-button {
+label {
+  margin: 14px 0 7px;
+  color: #35465c;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d3dde7;
+  border-radius: 8px;
   padding: 12px;
+  outline: none;
+  color: #23354a;
+  font: inherit;
+}
+
+input:focus {
+  border-color: #168f7d;
+  box-shadow: 0 0 0 3px rgba(22, 143, 125, 0.15);
 }
 
 button {
+  margin-top: 22px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 8px;
+  padding: 13px;
   background: #168f7d;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+button:hover:not(:disabled) {
+  background: #0c705f;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .error-message {
+  margin: 15px 0 0;
+  border-radius: 7px;
+  padding: 10px;
+  background: #fff0f0;
   color: #b02020;
+  font-size: 0.84rem;
+}
+
+.credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 25px;
+  border-left: 4px solid #168f7d;
+  padding: 12px 14px;
+  background: #f0faf8;
+  color: #496174;
+  font-size: 0.83rem;
+}
+
+.credentials strong {
+  color: #167764;
 }
