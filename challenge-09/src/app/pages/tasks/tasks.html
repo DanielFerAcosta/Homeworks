@@ -1,0 +1,263 @@
+<header class="tasks-header">
+  <div>
+    <p class="eyebrow">CHALLENGE 09</p>
+
+    <h1>Mis tareas</h1>
+
+    <p class="user-info">
+      Hola, {{ authService.username() }}
+      · {{ authService.email() }}
+    </p>
+  </div>
+
+  <button
+    class="btn btn-outline-light"
+    type="button"
+    [disabled]="signingOut() || saving() || busyTaskId() !== null"
+    (click)="logout()"
+  >
+    {{ signingOut() ? 'Cerrando sesión…' : 'Cerrar sesión' }}
+  </button>
+</header>
+
+<main class="container py-4">
+  <section class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <article class="stat-card">
+        <span>Total</span>
+        <strong>{{ tasksService.tasks().length }}</strong>
+      </article>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <article class="stat-card">
+        <span>Pendientes</span>
+        <strong>{{ tasksService.pendingCount() }}</strong>
+      </article>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <article class="stat-card">
+        <span>Completadas</span>
+        <strong>{{ tasksService.completedCount() }}</strong>
+      </article>
+    </div>
+  </section>
+
+  @if (errorMessage()) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @if (tasksService.error()) {
+    <div class="alert alert-danger" role="alert">
+      {{ tasksService.error() }}
+    </div>
+  }
+
+  @if (successMessage()) {
+    <div class="alert alert-success" role="status">
+      {{ successMessage() }}
+    </div>
+  }
+
+  <div class="row g-4">
+    <section class="col-12 col-lg-4">
+      <article class="task-panel">
+        <h2>
+          {{ editingId() ? 'Editar tarea' : 'Nueva tarea' }}
+        </h2>
+
+        <form #taskForm="ngForm" (ngSubmit)="saveTask()">
+          <div class="mb-3">
+            <label for="task-title" class="form-label">
+              Título
+            </label>
+
+            <input
+              id="task-title"
+              class="form-control"
+              type="text"
+              name="title"
+              [(ngModel)]="title"
+              placeholder="Ejemplo: entregar el Challenge 09"
+              maxlength="120"
+              [disabled]="saving()"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="task-description" class="form-label">
+              Descripción
+            </label>
+
+            <textarea
+              id="task-description"
+              class="form-control"
+              name="description"
+              [(ngModel)]="description"
+              rows="4"
+              maxlength="1000"
+              [disabled]="saving()"
+              placeholder="Detalles opcionales"
+            ></textarea>
+          </div>
+
+          <button
+            class="btn btn-primary w-100"
+            type="submit"
+            [disabled]="
+              taskForm.invalid ||
+              saving() ||
+              signingOut() ||
+              busyTaskId() !== null
+            "
+          >
+            {{
+              saving()
+                ? 'Guardando…'
+                : editingId()
+                  ? 'Guardar cambios'
+                  : 'Crear tarea'
+            }}
+          </button>
+
+          @if (editingId()) {
+            <button
+              class="btn btn-outline-secondary w-100 mt-2"
+              type="button"
+              [disabled]="saving()"
+              (click)="cancelEdit()"
+            >
+              Cancelar edición
+            </button>
+          }
+        </form>
+      </article>
+    </section>
+
+    <section class="col-12 col-lg-8">
+      <article class="task-panel">
+        <div class="list-heading">
+          <h2>Lista de tareas</h2>
+
+          <div class="filters" aria-label="Filtrar tareas">
+            <button
+              class="btn btn-sm"
+              [class.btn-primary]="filter() === 'all'"
+              [class.btn-outline-secondary]="filter() !== 'all'"
+              type="button"
+              (click)="filter.set('all')"
+            >
+              Todas
+            </button>
+
+            <button
+              class="btn btn-sm"
+              [class.btn-primary]="filter() === 'pending'"
+              [class.btn-outline-secondary]="filter() !== 'pending'"
+              type="button"
+              (click)="filter.set('pending')"
+            >
+              Pendientes
+            </button>
+
+            <button
+              class="btn btn-sm"
+              [class.btn-primary]="filter() === 'completed'"
+              [class.btn-outline-secondary]="filter() !== 'completed'"
+              type="button"
+              (click)="filter.set('completed')"
+            >
+              Completadas
+            </button>
+          </div>
+        </div>
+
+        @if (tasksService.loading()) {
+          <p class="empty-state" role="status">
+            Cargando tareas…
+          </p>
+        } @else {
+          <div class="task-list">
+            @for (task of visibleTasks(); track task.id) {
+              <article
+                class="task-item"
+                [class.completed]="task.completed"
+              >
+                <div class="task-main">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [checked]="task.completed"
+                    [attr.aria-label]="
+                      task.completed
+                        ? 'Marcar como pendiente: ' + task.title
+                        : 'Marcar como completada: ' + task.title
+                    "
+                    [disabled]="
+                      busyTaskId() !== null ||
+                      saving() ||
+                      signingOut()
+                    "
+                    (change)="toggleTask(task)"
+                  />
+
+                  <div class="task-info">
+                    <h3>{{ task.title }}</h3>
+
+                    @if (task.description) {
+                      <p>{{ task.description }}</p>
+                    }
+
+                    <span
+                      class="badge"
+                      [class.text-bg-success]="task.completed"
+                      [class.text-bg-warning]="!task.completed"
+                    >
+                      {{ task.completed ? 'Completada' : 'Pendiente' }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="task-actions">
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    type="button"
+                    [disabled]="
+                      busyTaskId() !== null ||
+                      saving() ||
+                      signingOut()
+                    "
+                    (click)="startEdit(task)"
+                  >
+                    Editar
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    type="button"
+                    [disabled]="
+                      busyTaskId() !== null ||
+                      saving() ||
+                      signingOut()
+                    "
+                    (click)="deleteTask(task)"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </article>
+            } @empty {
+              <p class="empty-state">
+                No hay tareas para este filtro.
+              </p>
+            }
+          </div>
+        }
+      </article>
+    </section>
+  </div>
+</main>

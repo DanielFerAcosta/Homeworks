@@ -1,0 +1,78 @@
+<main class="auth-page">
+  <section class="auth-card">
+    <div class="brand-icon">✓</div>
+
+    <p class="eyebrow">CHALLENGE 09</p>
+
+    <h1>Bienvenido de nuevo</h1>
+
+    <p class="description">
+      Inicia sesión para organizar tus tareas.
+    </p>
+
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="login-email" class="form-label">
+          Correo electrónico
+        </label>
+
+        <input
+          id="login-email"
+          class="form-control"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="nombre@correo.com"
+          autocomplete="email"
+          [disabled]="submitting()"
+          required
+          email
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="login-password" class="form-label">
+          Contraseña
+        </label>
+
+        <input
+          id="login-password"
+          class="form-control"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Tu contraseña"
+          autocomplete="current-password"
+          [disabled]="submitting()"
+          required
+        />
+      </div>
+
+      @if (errorMessage()) {
+        <div class="alert alert-danger" role="alert">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <button
+        class="btn btn-primary w-100"
+        type="submit"
+        [disabled]="loginForm.invalid || submitting()"
+      >
+        @if (submitting()) {
+          <span
+            class="spinner-border spinner-border-sm me-2"
+            aria-hidden="true"
+          ></span>
+        }
+
+        {{ submitting() ? 'Ingresando…' : 'Iniciar sesión' }}
+      </button>
+    </form>
+
+    <p class="auth-link">
+      ¿No tienes cuenta?
+      <a routerLink="/register">Crear cuenta</a>
+    </p>
+  </section>
+</main>
