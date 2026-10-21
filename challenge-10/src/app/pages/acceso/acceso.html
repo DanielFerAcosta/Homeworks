@@ -1,0 +1,92 @@
+<main class="pagina">
+  <section class="tarjeta">
+    <div class="marca">✓</div>
+
+    <p class="etiqueta">CHALLENGE 10 · SUPABASE</p>
+
+    <h1>
+      {{ registro() ? 'Crear cuenta' : 'Bienvenido de nuevo' }}
+    </h1>
+
+    <p class="ayuda">
+      {{ registro()
+        ? 'Regístrate para organizar tus tareas.'
+        : 'Inicia sesión para consultar tus pendientes.' }}
+    </p>
+
+    <form #form="ngForm" (ngSubmit)="enviar()">
+      <label for="correo">Correo electrónico</label>
+
+      <input
+        id="correo"
+        name="correo"
+        type="email"
+        [(ngModel)]="correo"
+        autocomplete="email"
+        placeholder="nombre@correo.com"
+        [disabled]="enviando()"
+        required
+        email
+      />
+
+      <label for="clave">Contraseña</label>
+
+      <input
+        id="clave"
+        name="clave"
+        type="password"
+        [(ngModel)]="clave"
+        [attr.autocomplete]="
+          registro() ? 'new-password' : 'current-password'
+        "
+        [disabled]="enviando()"
+        required
+      />
+
+      @if (registro()) {
+        <label for="confirmacion">Confirmar contraseña</label>
+
+        <input
+          id="confirmacion"
+          name="confirmacion"
+          type="password"
+          [(ngModel)]="confirmacion"
+          autocomplete="new-password"
+          [disabled]="enviando()"
+          required
+        />
+
+        <small>Usa al menos 6 caracteres.</small>
+      }
+
+      @if (error()) {
+        <p class="aviso error" role="alert">{{ error() }}</p>
+      }
+
+      @if (mensaje()) {
+        <p class="aviso exito" role="status">{{ mensaje() }}</p>
+      }
+
+      <button
+        type="submit"
+        [disabled]="
+          form.invalid ||
+          enviando() ||
+          (registro() && clave.length < 6)
+        "
+      >
+        {{ enviando()
+          ? 'Procesando...'
+          : registro() ? 'Crear cuenta' : 'Iniciar sesión' }}
+      </button>
+    </form>
+
+    <p class="enlace">
+      {{ registro() ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?' }}
+
+      <a [routerLink]="registro() ? '/login' : '/register'">
+        {{ registro() ? 'Iniciar sesión' : 'Registrarse' }}
+      </a>
+    </p>
+  </section>
+</main>

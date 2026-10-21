@@ -1,0 +1,161 @@
+<main class="contenedor">
+  <header class="encabezado">
+    <div>
+      <p class="etiqueta">CHALLENGE 10 · SUPABASE</p>
+
+      <h1>Mis tareas</h1>
+
+      <p class="subtitulo">
+        Organiza tus pendientes en tiempo real.
+      </p>
+    </div>
+
+    <div class="sesion">
+      <span>{{ auth.usuario()?.email }}</span>
+
+      <button
+        type="button"
+        class="secundario"
+        (click)="salir()"
+        [disabled]="ocupado()"
+      >
+        Cerrar sesión
+      </button>
+    </div>
+  </header>
+
+  <section class="resumen">
+    <div>
+      <span>Total</span>
+      <strong>{{ lista().length }}</strong>
+    </div>
+
+    <div>
+      <span>Pendientes</span>
+      <strong>{{ pendientes() }}</strong>
+    </div>
+
+    <div>
+      <span>Completadas</span>
+      <strong>{{ lista().length - pendientes() }}</strong>
+    </div>
+  </section>
+
+  @if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  }
+
+  <section class="panel">
+    <h2>Nueva tarea</h2>
+
+    <form #form="ngForm" (ngSubmit)="crear()" class="crear">
+      <input
+        name="titulo"
+        type="text"
+        aria-label="Título de la nueva tarea"
+        placeholder="¿Qué necesitas hacer?"
+        [(ngModel)]="titulo"
+        [disabled]="ocupado()"
+        required
+      />
+
+      <button
+        type="submit"
+        [disabled]="form.invalid || !titulo.trim() || ocupado()"
+      >
+        Agregar tarea
+      </button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="cabecera-lista">
+      <h2>Listado</h2>
+
+      <span class="estado" [class.activo]="conectado()">
+        {{ conectado()
+          ? '● En vivo'
+          : '○ Sin conexión en vivo' }}
+      </span>
+    </div>
+
+    @if (cargando()) {
+      <p class="vacio">Cargando tareas...</p>
+    } @else {
+      @for (tarea of lista(); track tarea.id) {
+        <article
+          class="tarea"
+          [class.completada]="tarea.completada"
+        >
+          <input
+            type="checkbox"
+            [checked]="tarea.completada"
+            [disabled]="ocupado()"
+            [attr.aria-label]="'Cambiar estado de ' + tarea.titulo"
+            (change)="alternar(tarea)"
+          />
+
+          <div class="contenido">
+            @if (editandoId() === tarea.id) {
+              <input
+                type="text"
+                aria-label="Nuevo título"
+                [(ngModel)]="tituloEdicion"
+                [disabled]="ocupado()"
+              />
+            } @else {
+              <p>{{ tarea.titulo }}</p>
+
+              <small>
+                {{ tarea.completada ? 'Completada' : 'Pendiente' }}
+              </small>
+            }
+          </div>
+
+          <div class="acciones">
+            @if (editandoId() === tarea.id) {
+              <button
+                type="button"
+                (click)="guardarEdicion()"
+                [disabled]="!tituloEdicion.trim() || ocupado()"
+              >
+                Guardar
+              </button>
+
+              <button
+                type="button"
+                class="secundario"
+                (click)="cancelarEdicion()"
+                [disabled]="ocupado()"
+              >
+                Cancelar
+              </button>
+            } @else {
+              <button
+                type="button"
+                class="secundario"
+                (click)="empezarEdicion(tarea)"
+                [disabled]="ocupado()"
+              >
+                Editar
+              </button>
+
+              <button
+                type="button"
+                class="peligro"
+                (click)="eliminar(tarea)"
+                [disabled]="ocupado()"
+              >
+                Eliminar
+              </button>
+            }
+          </div>
+        </article>
+      } @empty {
+        <p class="vacio">
+          Todavía no tienes tareas. Crea la primera arriba.
+        </p>
+      }
+    }
+  </section>
+</main>
