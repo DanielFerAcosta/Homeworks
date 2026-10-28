@@ -1,0 +1,282 @@
+<main class="contenedor">
+  <header class="encabezado">
+    <p class="etiqueta">ESTRUCTURAS DE DATOS II</p>
+    <h1>Challenge 11</h1>
+    <p class="subtitulo">
+      Grafo de amigos y ciudades
+    </p>
+  </header>
+
+  <section class="resumen">
+    <article>
+      <span>Ciudades</span>
+      <strong>{{ servicio.ciudades().length }}</strong>
+    </article>
+
+    <article>
+      <span>Personas</span>
+      <strong>{{ servicio.personas().length }}</strong>
+    </article>
+
+    <article>
+      <span>Conexiones</span>
+      <strong>{{ servicio.visual().links.length }}</strong>
+    </article>
+  </section>
+
+  @if (error()) {
+    <p class="aviso error" role="alert">
+      {{ error() }}
+    </p>
+  }
+
+  @if (mensaje()) {
+    <p class="aviso exito" role="status">
+      {{ mensaje() }}
+    </p>
+  }
+
+  <section class="formularios">
+    <article class="panel">
+      <h2>1. Crear ciudad</h2>
+
+      <form #ciudadForm="ngForm" (ngSubmit)="crearCiudad()">
+        <label for="nombreCiudad">Nombre</label>
+
+        <input
+          id="nombreCiudad"
+          name="nombreCiudad"
+          [(ngModel)]="nombreCiudad"
+          placeholder="Ejemplo: Cali"
+          required
+        />
+
+        <button
+          type="submit"
+          [disabled]="
+            ciudadForm.invalid || !nombreCiudad.trim()
+          "
+        >
+          Agregar ciudad
+        </button>
+      </form>
+    </article>
+
+    <article class="panel">
+      <h2>2. Crear persona</h2>
+
+      <form #personaForm="ngForm" (ngSubmit)="crearPersona()">
+        <label for="nombrePersona">Nombre</label>
+
+        <input
+          id="nombrePersona"
+          name="nombrePersona"
+          [(ngModel)]="nombrePersona"
+          placeholder="Ejemplo: Ana"
+          required
+        />
+
+        <label for="edadPersona">Edad</label>
+
+        <input
+          id="edadPersona"
+          name="edadPersona"
+          type="number"
+          [(ngModel)]="edadPersona"
+          min="0"
+          step="1"
+          required
+        />
+
+        <label for="ciudadPersona">Ciudad donde vive</label>
+
+        <select
+          id="ciudadPersona"
+          name="ciudadPersona"
+          [(ngModel)]="ciudadPersona"
+          required
+        >
+          <option value="">Selecciona una ciudad</option>
+
+          @for (ciudad of servicio.ciudades(); track ciudad.id) {
+            <option [value]="ciudad.id">
+              {{ ciudad.nombre }}
+            </option>
+          }
+        </select>
+
+        <button
+          type="submit"
+          [disabled]="
+            personaForm.invalid ||
+            !nombrePersona.trim() ||
+            servicio.ciudades().length === 0
+          "
+        >
+          Agregar persona
+        </button>
+      </form>
+    </article>
+
+    <article class="panel">
+      <h2>3. Conectar amigos</h2>
+
+      <form #amistadForm="ngForm" (ngSubmit)="crearAmistad()">
+        <label for="amigoA">Primera persona</label>
+
+        <select
+          id="amigoA"
+          name="amigoA"
+          [(ngModel)]="amigoA"
+          required
+        >
+          <option value="">Selecciona una persona</option>
+
+          @for (persona of servicio.personas(); track persona.id) {
+            <option [value]="persona.id">
+              {{ persona.nombre }} ·
+              {{ servicio.nombreCiudad(persona.ciudadId) }}
+            </option>
+          }
+        </select>
+
+        <label for="amigoB">Segunda persona</label>
+
+        <select
+          id="amigoB"
+          name="amigoB"
+          [(ngModel)]="amigoB"
+          required
+        >
+          <option value="">Selecciona una persona</option>
+
+          @for (persona of servicio.personas(); track persona.id) {
+            <option [value]="persona.id">
+              {{ persona.nombre }} ·
+              {{ servicio.nombreCiudad(persona.ciudadId) }}
+            </option>
+          }
+        </select>
+
+        <button
+          type="submit"
+          [disabled]="
+            amistadForm.invalid ||
+            amigoA === amigoB ||
+            servicio.personas().length < 2
+          "
+        >
+          Crear amistad
+        </button>
+      </form>
+    </article>
+  </section>
+
+  <section class="panel visualizacion">
+    <div class="titulo-seccion">
+      <h2>Visualización del grafo</h2>
+
+      <div class="leyenda">
+        <span><i class="punto ciudad"></i> Ciudad</span>
+        <span><i class="punto persona"></i> Persona</span>
+        <span><i class="linea residencia"></i> Vive en</span>
+        <span><i class="linea amistad"></i> Amistad</span>
+      </div>
+    </div>
+
+    @if (servicio.visual().nodes.length > 0) {
+      <app-vista-grafo [datos]="servicio.visual()" />
+    } @else {
+      <p class="vacio">
+        Crea una ciudad para comenzar a construir el grafo.
+      </p>
+    }
+  </section>
+
+  <section class="panel">
+    <h2>Habitantes por ciudad</h2>
+
+    <label for="consulta">Selecciona una ciudad</label>
+
+    <select
+      id="consulta"
+      [ngModel]="ciudadConsulta()"
+      (ngModelChange)="ciudadConsulta.set($event)"
+    >
+      <option value="">Selecciona una ciudad</option>
+
+      @for (ciudad of servicio.ciudades(); track ciudad.id) {
+        <option [value]="ciudad.id">
+          {{ ciudad.nombre }}
+        </option>
+      }
+    </select>
+
+    @if (ciudadConsulta()) {
+      <p class="ayuda">
+        Personas encontradas: {{ habitantes().length }}
+      </p>
+
+      <ul class="habitantes">
+        @for (persona of habitantes(); track persona.id) {
+          <li>
+            <span>{{ persona.nombre }}</span>
+            <span>{{ persona.edad }} años</span>
+          </li>
+        } @empty {
+          <li>No hay personas registradas en esta ciudad.</li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="inventario">
+    <article class="panel">
+      <h2>Ciudades registradas</h2>
+
+      @for (ciudad of servicio.ciudades(); track ciudad.id) {
+        <div class="fila">
+          <span>{{ ciudad.nombre }}</span>
+
+          <button
+            type="button"
+            class="eliminar"
+            [attr.aria-label]="'Eliminar ciudad ' + ciudad.nombre"
+            (click)="eliminar(ciudad.id, ciudad.nombre)"
+          >
+            Eliminar
+          </button>
+        </div>
+      } @empty {
+        <p class="ayuda">Todavía no hay ciudades.</p>
+      }
+    </article>
+
+    <article class="panel">
+      <h2>Personas registradas</h2>
+
+      @for (persona of servicio.personas(); track persona.id) {
+        <div class="fila">
+          <div>
+            <p>{{ persona.nombre }}</p>
+            <small>
+              {{ persona.edad }} años ·
+              {{ servicio.nombreCiudad(persona.ciudadId) }}
+            </small>
+          </div>
+
+          <button
+            type="button"
+            class="eliminar"
+            [attr.aria-label]="'Eliminar persona ' + persona.nombre"
+            (click)="eliminar(persona.id, persona.nombre)"
+          >
+            Eliminar
+          </button>
+        </div>
+      } @empty {
+        <p class="ayuda">Todavía no hay personas.</p>
+      }
+    </article>
+  </section>
+</main>
