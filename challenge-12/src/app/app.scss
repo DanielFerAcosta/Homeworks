@@ -1,0 +1,442 @@
+$primario: #2563eb;
+$texto: #172b4d;
+$suave: #64748b;
+$borde: #e2e8f0;
+$fondo: #f1f5f9;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: $fondo;
+  color: $texto;
+}
+
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 22px 50px;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+
+  h1 {
+    margin: 8px 0;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.03em;
+  }
+}
+
+.etiqueta {
+  margin: 0 0 8px;
+  color: $primario;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.subtitulo {
+  margin: 0;
+  color: $suave;
+  font-size: 17px;
+}
+
+.insignia,
+.cantidad {
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+
+  article {
+    padding: 22px;
+    border: 1px solid $borde;
+    border-radius: 16px;
+    background: white;
+  }
+
+  span {
+    display: block;
+    margin-bottom: 10px;
+    color: $suave;
+    font-size: 14px;
+  }
+
+  strong {
+    font-size: 32px;
+  }
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+  gap: 24px;
+}
+
+.panel {
+  min-width: 0;
+  margin-bottom: 24px;
+  padding: 26px;
+  border: 1px solid $borde;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.03);
+
+  h2 {
+    margin: 0 0 18px;
+    font-size: 22px;
+  }
+}
+
+.titulo-seccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.controles {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: $texto;
+  font: inherit;
+
+  &:focus {
+    border-color: $primario;
+    outline: 3px solid #dbeafe;
+  }
+}
+
+.ayuda {
+  margin: 14px 0 22px;
+  color: $suave;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+
+  label {
+    margin-bottom: 0;
+  }
+
+  button {
+    margin-top: 6px;
+  }
+}
+
+button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: $primario;
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: #1d4ed8;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.secundario {
+  flex-shrink: 0;
+  background: #eff6ff;
+  color: #1d4ed8;
+
+  &:hover:not(:disabled) {
+    background: #dbeafe;
+  }
+}
+
+.cabecera-resultados {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+
+  h3 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  span {
+    color: $suave;
+    font-size: 12px;
+  }
+}
+
+.resultados {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid $borde;
+    border-radius: 13px;
+    background: #f8fafc;
+  }
+}
+
+.posicion {
+  display: grid;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+.producto {
+  flex: 1;
+  min-width: 0;
+
+  h4 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    margin: 0;
+    color: $suave;
+    font-size: 12px;
+  }
+}
+
+.popularidad {
+  flex-shrink: 0;
+  text-align: right;
+
+  strong {
+    display: block;
+    color: #047857;
+    font-size: 24px;
+  }
+
+  span {
+    color: $suave;
+    font-size: 11px;
+  }
+}
+
+.resultados .sin-resultados {
+  justify-content: center;
+  min-height: 110px;
+  border-style: dashed;
+  color: $suave;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.aviso {
+  margin: 0;
+  padding: 13px;
+  border-radius: 9px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.exito {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th,
+  td {
+    padding: 14px 12px;
+    border-bottom: 1px solid $borde;
+  }
+
+  th {
+    background: #f8fafc;
+    color: $suave;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  td {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+.explicacion {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+
+  article {
+    padding: 22px;
+    border: 1px solid $borde;
+    border-radius: 15px;
+    background: #eaf0f8;
+  }
+
+  h3 {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  p {
+    margin: 0;
+    color: $suave;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+.paso {
+  color: $primario;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 950px) {
+  .distribucion {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .contenedor {
+    padding: 26px 14px;
+  }
+
+  .encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resumen {
+    gap: 8px;
+
+    article {
+      padding: 16px 10px;
+    }
+
+    span {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    strong {
+      font-size: 27px;
+    }
+  }
+
+  .panel {
+    padding: 22px 16px;
+  }
+
+  .titulo-seccion {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .controles {
+    grid-template-columns: minmax(0, 1fr) 85px;
+    gap: 10px;
+  }
+
+  .cabecera-resultados {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resultados li {
+    gap: 10px;
+    padding: 14px 10px;
+  }
+
+  .producto p {
+    display: none;
+  }
+
+  .popularidad strong {
+    font-size: 21px;
+  }
+
+  .explicacion {
+    grid-template-columns: 1fr;
+  }
+}
