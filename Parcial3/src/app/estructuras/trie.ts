@@ -62,7 +62,7 @@ export class Trie {
     }
   }
 
-  private normalizar(texto: string): string {
-    return texto.trim().toLowerCase();
-  }
+private normalizar(texto: string): string {
+  return texto.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 }
