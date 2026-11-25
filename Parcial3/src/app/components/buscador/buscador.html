@@ -1,0 +1,44 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Buscador</h2>
+    <span class="etiqueta">01 · Trie</span>
+  </header>
+
+  <div class="buscador">
+    <input
+      class="buscador__campo"
+      type="search"
+      placeholder="Escribe un título…"
+      autocomplete="off"
+      aria-label="Buscar canción"
+      [value]="consulta()"
+      (input)="alEscribir($event)"
+      (keydown.enter)="buscar()"
+    />
+    <button class="buscador__boton" type="button" (click)="buscar()">Buscar</button>
+  </div>
+
+  @if (resultado() === 'existe') {
+    <p class="aviso aviso--ok">La canción existe en el catálogo.</p>
+  } @else if (resultado() === 'no-existe') {
+    <p class="aviso aviso--error">La canción no está en el catálogo.</p>
+  }
+
+  @if (largoPrefijo() > 0) {
+    <p class="subtitulo">Sugerencias para "{{ consulta().trim() }}"</p>
+
+    @if (sugerencias().length > 0) {
+      <ul class="sugerencias">
+        @for (titulo of sugerencias(); track titulo) {
+          <li>
+            <button type="button" class="sugerencia" (click)="elegir(titulo)">
+              <strong>{{ titulo.slice(0, largoPrefijo()) }}</strong>{{ titulo.slice(largoPrefijo()) }}
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="vacio">Ningún título empieza así.</p>
+    }
+  }
+</section>

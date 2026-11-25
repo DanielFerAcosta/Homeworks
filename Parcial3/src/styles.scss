@@ -1,0 +1,28 @@
+@use 'theme' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: $color-papel;
+  color: $color-tinta;
+  font-family: $fuente-texto;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: $color-acento;
+  color: $color-papel;
+}

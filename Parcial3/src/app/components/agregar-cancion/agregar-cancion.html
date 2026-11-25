@@ -1,0 +1,39 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Agregar canción</h2>
+    <span class="etiqueta">Inserción</span>
+  </header>
+
+  <form class="formulario" (submit)="guardar($event)">
+    <label class="campo campo--ancho">
+      <span>Título</span>
+      <input type="text" required [value]="titulo()" (input)="titulo.set(texto($event))" />
+    </label>
+
+    <label class="campo">
+      <span>Artista</span>
+      <input type="text" [value]="artista()" (input)="artista.set(texto($event))" />
+    </label>
+
+    <label class="campo">
+      <span>Reproducciones</span>
+      <input type="number" min="0" [value]="reproducciones()" (input)="reproducciones.set(numero($event))" />
+    </label>
+
+    <label class="campo campo--ancho">
+      <span>Relacionada con</span>
+      <select (change)="relacionada.set(texto($event))">
+        <option value="" [selected]="relacionada() === ''">Ninguna</option>
+        @for (t of musica.titulos(); track t) {
+          <option [value]="t" [selected]="relacionada() === t">{{ t }}</option>
+        }
+      </select>
+    </label>
+
+    <button type="submit" class="formulario__boton">Agregar</button>
+  </form>
+
+  @if (mensaje(); as m) {
+    <p [class.aviso--ok]="m.ok" [class.aviso--error]="!m.ok">{{ m.texto }}</p>
+  }
+</section>

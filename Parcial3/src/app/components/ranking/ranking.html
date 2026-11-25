@@ -1,0 +1,33 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Top 5</h2>
+    <span class="etiqueta">02 · Max Heap</span>
+  </header>
+
+  <ol class="ranking">
+    @for (c of musica.ranking(); track c.titulo; let i = $index) {
+      <li class="fila" [class.fila--activa]="musica.seleccionada() === c.titulo">
+        <span class="fila__pos">{{ i + 1 }}</span>
+
+        <button type="button" class="fila__info" (click)="musica.seleccionar(c.titulo)">
+          <span class="fila__titulo">{{ c.titulo }}</span>
+          <span class="fila__artista">{{ c.artista }}</span>
+          <span class="barra">
+            <span class="barra__relleno" [style.width.%]="porcentaje(c.reproducciones)"></span>
+          </span>
+        </button>
+
+        <span class="fila__numero">{{ c.reproducciones | number }}</span>
+
+        <button
+          type="button"
+          class="fila__play"
+          [attr.aria-label]="'Escuchar ' + c.titulo"
+          (click)="musica.escuchar(c.titulo)"
+        >+1</button>
+      </li>
+    }
+  </ol>
+
+  <p class="nota">Raíz del heap: <strong>{{ musica.ranking()[0]?.titulo }}</strong></p>
+</section>

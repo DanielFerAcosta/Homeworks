@@ -1,0 +1,51 @@
+@use '../../../theme' as *;
+
+:host {
+  display: block;
+}
+
+.panel {
+  @include panel;
+}
+
+.panel__cabecera {
+  @include cabecera-panel;
+}
+
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $esp-md;
+}
+
+.campo {
+  display: grid;
+  gap: $esp-xs;
+
+  span {
+    @include etiqueta;
+  }
+
+  input,
+  select {
+    @include campo;
+  }
+}
+
+.campo--ancho {
+  grid-column: 1 / -1;
+}
+
+.formulario__boton {
+  @include boton;
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.aviso--ok {
+  @include aviso($color-exito);
+}
+
+.aviso--error {
+  @include aviso($color-error);
+}

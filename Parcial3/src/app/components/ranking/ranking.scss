@@ -1,0 +1,112 @@
+@use '../../../theme' as *;
+
+:host {
+  display: block;
+}
+
+.panel {
+  @include panel;
+}
+
+.panel__cabecera {
+  @include cabecera-panel;
+}
+
+.ranking {
+  @include lista-limpia;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: $esp-md;
+  padding: $esp-sm 0;
+  border-bottom: 1px solid $color-linea;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:first-child .fila__pos {
+    color: $color-acento;
+  }
+}
+
+.fila__pos {
+  font-family: $fuente-display;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fila__info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-acento;
+    outline-offset: 2px;
+  }
+}
+
+.fila__titulo {
+  @include truncar;
+  font-weight: 600;
+}
+
+.fila__artista {
+  font-size: 0.85rem;
+  color: $color-tinta-suave;
+}
+
+.barra {
+  height: 4px;
+  margin-top: $esp-xs;
+  background: $color-linea;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barra__relleno {
+  display: block;
+  height: 100%;
+  background: $color-tinta;
+  transition: width 0.3s ease;
+}
+
+.fila--activa {
+  .fila__titulo {
+    color: $color-acento;
+  }
+
+  .barra__relleno {
+    background: $color-acento;
+  }
+}
+
+.fila__numero {
+  @include numero;
+  font-size: 0.9rem;
+}
+
+.fila__play {
+  @include boton($color-superficie, $color-tinta);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.nota {
+  @include etiqueta;
+  margin: $esp-md 0 0;
+
+  strong {
+    color: $color-tinta;
+  }
+}

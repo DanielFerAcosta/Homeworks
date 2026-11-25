@@ -1,0 +1,75 @@
+@use '../../../theme' as *;
+
+:host {
+  display: block;
+}
+
+.panel {
+  @include panel;
+}
+
+.panel__cabecera {
+  @include cabecera-panel;
+}
+
+.buscador {
+  display: flex;
+  gap: $esp-sm;
+}
+
+.buscador__campo {
+  @include campo;
+  flex: 1;
+}
+
+.buscador__boton {
+  @include boton;
+}
+
+.aviso--ok {
+  @include aviso($color-exito);
+}
+
+.aviso--error {
+  @include aviso($color-error);
+}
+
+.subtitulo {
+  @include etiqueta;
+  margin: $esp-md 0 $esp-sm;
+}
+
+.sugerencias {
+  @include lista-limpia;
+  border: $borde;
+  border-radius: $radio;
+  overflow: hidden;
+
+  li + li {
+    border-top: 1px solid $color-linea;
+  }
+}
+
+.sugerencia {
+  width: 100%;
+  padding: $esp-sm $esp-md;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+
+  strong {
+    color: $color-acento;
+    font-weight: 600;
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    background: $color-acento-suave;
+  }
+}
+
+.vacio {
+  @include texto-suave;
+}

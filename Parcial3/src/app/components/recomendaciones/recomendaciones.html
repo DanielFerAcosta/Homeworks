@@ -1,0 +1,43 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Relacionadas</h2>
+    <span class="etiqueta">03 · Grafo</span>
+  </header>
+
+  @if (actual(); as c) {
+    <div class="actual">
+      <span class="actual__etiqueta">Seleccionada</span>
+      <p class="actual__titulo">{{ c.titulo }}</p>
+      <p class="actual__meta">{{ c.artista }} · {{ c.reproducciones | number }} reproducciones</p>
+      <button type="button" class="actual__boton" (click)="musica.escuchar(c.titulo)">Escuchar (+1)</button>
+    </div>
+
+    <h3 class="grupo">Conexión directa <span>{{ directas().length }}</span></h3>
+    @if (directas().length > 0) {
+      <ul class="chips">
+        @for (r of directas(); track r.titulo) {
+          <li>
+            <button type="button" class="chip" (click)="musica.seleccionar(r.titulo)">{{ r.titulo }}</button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="vacio">Esta canción no tiene conexiones.</p>
+    }
+
+    <h3 class="grupo">A dos saltos <span>{{ indirectas().length }}</span></h3>
+    @if (indirectas().length > 0) {
+      <ul class="chips">
+        @for (r of indirectas(); track r.titulo) {
+          <li>
+            <button type="button" class="chip chip--lejana" (click)="musica.seleccionar(r.titulo)">{{ r.titulo }}</button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="vacio">Sin recomendaciones a dos saltos.</p>
+    }
+  } @else {
+    <p class="vacio">Elige una canción en el buscador o en el ranking.</p>
+  }
+</section>

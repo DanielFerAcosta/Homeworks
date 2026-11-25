@@ -1,0 +1,16 @@
+<header class="cabecera">
+  <div class="marca">
+    <span class="marca__punto"></span>
+    <span>Spotify <em>Aula</em></span>
+  </div>
+  <p class="cabecera__resumen">{{ musica.total() }} canciones · Trie · Max Heap · Grafo</p>
+</header>
+
+<main class="tablero">
+  <div class="columna">
+    <app-buscador />
+    <app-agregar-cancion />
+  </div>
+  <app-ranking />
+  <app-recomendaciones />
+</main>

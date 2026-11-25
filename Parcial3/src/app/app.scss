@@ -1,0 +1,68 @@
+@use '../theme' as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: $esp-sm;
+  padding: $esp-lg;
+  border-bottom: $borde;
+
+  @include desde($bp-md) {
+    padding: $esp-lg $esp-xl;
+  }
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $fuente-display;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  em {
+    font-weight: 500;
+    color: $color-acento;
+  }
+}
+
+.marca__punto {
+  width: 14px;
+  height: 14px;
+  background: $color-acento;
+  border-radius: 50%;
+}
+
+.cabecera__resumen {
+  @include etiqueta;
+  margin: 0;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: $esp-lg;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: $esp-lg;
+
+  @include desde($bp-md) {
+    grid-template-columns: 1.1fr 1fr 1fr;
+    padding: $esp-xl;
+  }
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: $esp-lg;
+}

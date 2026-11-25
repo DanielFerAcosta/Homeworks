@@ -1,0 +1,76 @@
+@use '../../../theme' as *;
+
+:host {
+  display: block;
+}
+
+.panel {
+  @include panel;
+}
+
+.panel__cabecera {
+  @include cabecera-panel;
+}
+
+.actual {
+  margin-bottom: $esp-lg;
+  padding: $esp-md;
+  background: $color-tinta;
+  color: $color-papel;
+  border-radius: $radio;
+}
+
+.actual__etiqueta {
+  @include etiqueta;
+  color: $color-acento;
+}
+
+.actual__titulo {
+  margin: $esp-xs 0 2px;
+  font-family: $fuente-display;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.actual__meta {
+  margin: 0 0 $esp-md;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.actual__boton {
+  @include boton($color-acento, $color-papel);
+  border-color: $color-acento;
+}
+
+.grupo {
+  @include etiqueta;
+  display: flex;
+  justify-content: space-between;
+  margin: $esp-md 0 $esp-sm;
+
+  span {
+    @include numero;
+    color: $color-tinta;
+  }
+}
+
+.chips {
+  @include lista-limpia;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $esp-sm;
+}
+
+.chip {
+  @include chip;
+}
+
+.chip--lejana {
+  border-style: dashed;
+}
+
+.vacio {
+  @include texto-suave;
+}

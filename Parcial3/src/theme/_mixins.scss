@@ -1,0 +1,148 @@
+@use 'variables' as *;
+
+// Media query a partir de un ancho
+@mixin desde($ancho) {
+  @media (min-width: $ancho) {
+    @content;
+  }
+}
+
+// Contenedor base de cada panel del dashboard
+@mixin panel {
+  background: $color-superficie;
+  border: $borde;
+  border-radius: $radio;
+  padding: $esp-lg;
+}
+
+// Cabecera de panel: título a la izquierda, etiqueta a la derecha
+@mixin cabecera-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: $esp-sm;
+  margin-bottom: $esp-md;
+  padding-bottom: $esp-sm;
+  border-bottom: $borde;
+
+  h2 {
+    margin: 0;
+    font-family: $fuente-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .etiqueta {
+    @include etiqueta;
+  }
+}
+
+// Texto pequeño en mayúsculas
+@mixin etiqueta {
+  font-family: $fuente-mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-tinta-suave;
+}
+
+// Números alineados
+@mixin numero {
+  font-family: $fuente-mono;
+  font-variant-numeric: tabular-nums;
+}
+
+// Botón reutilizable con colores configurables
+@mixin boton($fondo: $color-tinta, $texto: $color-papel) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: $fondo;
+  color: $texto;
+  border: $borde;
+  border-radius: $radio;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 $color-acento;
+  }
+
+  &:active {
+    transform: none;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-acento;
+    outline-offset: 2px;
+  }
+}
+
+// Campos de formulario
+@mixin campo {
+  width: 100%;
+  padding: 10px 12px;
+  background: $color-papel;
+  border: $borde;
+  border-radius: $radio;
+
+  &::placeholder {
+    color: $color-tinta-suave;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-acento;
+    box-shadow: 0 0 0 3px $color-acento-suave;
+  }
+}
+
+// Píldora clicable
+@mixin chip {
+  padding: 6px 12px;
+  background: $color-superficie;
+  border: $borde;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.12s ease;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    background: $color-acento-suave;
+    border-color: $color-acento;
+  }
+}
+
+// Mensaje de estado con borde lateral
+@mixin aviso($color) {
+  margin: $esp-sm 0 0;
+  padding-left: $esp-sm;
+  border-left: 3px solid $color;
+  color: $color;
+  font-size: 0.9rem;
+}
+
+@mixin texto-suave {
+  margin: 0;
+  color: $color-tinta-suave;
+  font-size: 0.9rem;
+}
+
+@mixin lista-limpia {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin truncar {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
