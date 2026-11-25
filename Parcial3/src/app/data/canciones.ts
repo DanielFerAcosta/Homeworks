@@ -7,28 +7,47 @@ export const CANCIONES_INICIALES: Cancion[] = [
   { titulo: 'Cómo Te Atreves', artista: 'Morat', reproducciones: 1448 },
   { titulo: 'Tusa', artista: 'Karol G', reproducciones: 1446 },
   { titulo: 'Por Fin Te Encontré', artista: 'Cali y El Dandee', reproducciones: 1444 },
+  { titulo: 'Goteo', artista: 'Duki', reproducciones: 1420 },
+  { titulo: 'La Curiosidad', artista: 'Jay Wheeler', reproducciones: 1405 },
   { titulo: 'Billie Jean', artista: 'Michael Jackson', reproducciones: 1390 },
+  { titulo: 'Darte un Beso', artista: 'Prince Royce', reproducciones: 1370 },
+  { titulo: "She Don't Give a FO", artista: 'Duki y Khea', reproducciones: 1350 },
+  { titulo: 'Adán y Eva', artista: 'Paulo Londra', reproducciones: 1320 },
   { titulo: 'Traicionera', artista: 'Sebastián Yatra', reproducciones: 1300 },
+  { titulo: 'Mamichula', artista: 'Trueno y Nicki Nicole', reproducciones: 1280 },
+  { titulo: 'Loca', artista: 'Khea, Duki y Cazzu', reproducciones: 1265 },
   { titulo: 'Tal Vez', artista: '3AM', reproducciones: 1250 },
+  { titulo: 'Viendo el Techo', artista: 'Jay Wheeler', reproducciones: 1230 },
   { titulo: 'Provenza', artista: 'Karol G', reproducciones: 1210 },
+  { titulo: 'Corazón Sin Cara', artista: 'Prince Royce', reproducciones: 1195 },
   { titulo: 'Besos en Guerra', artista: 'Morat', reproducciones: 1180 },
   { titulo: 'Pepas', artista: 'Farruko', reproducciones: 1150 },
   { titulo: 'Bad Guy', artista: 'Billie Eilish', reproducciones: 1120 },
   { titulo: 'Las Flores Que Eran Para Ti', artista: '3AM', reproducciones: 1080 },
+  { titulo: 'Givenchy', artista: 'Duki', reproducciones: 1060 },
   { titulo: 'Yo Te Esperaré', artista: 'Cali y El Dandee', reproducciones: 1040 },
+  { titulo: 'Oro y Platino', artista: 'YSY A', reproducciones: 1010 },
+  { titulo: 'El Amanecer', artista: 'YSY A', reproducciones: 995 },
   { titulo: 'Bichota', artista: 'Karol G', reproducciones: 980 },
-  { titulo: 'Cuánto Me Duele', artista: 'Morat', reproducciones: 950 },
+  { titulo: 'Si Te Preguntan...', artista: 'Prince Royce, Nicky Jam y Jay Wheeler', reproducciones: 965 },
+  { titulo: 'Se Que Te Duele', artista: 'Alejandro Fernández y Morat', reproducciones: 950 },
   { titulo: 'Robarte un Beso', artista: 'Carlos Vives y Sebastián Yatra', reproducciones: 920 },
+  { titulo: 'Wapo Traketero', artista: 'Nicki Nicole', reproducciones: 900 },
+  { titulo: 'Otra Noche Más', artista: 'Jay Wheeler', reproducciones: 885 },
   { titulo: 'Hawái', artista: 'Maluma', reproducciones: 870 },
+  { titulo: 'A Por Todo', artista: 'YSY A', reproducciones: 860 },
   { titulo: 'Mil Maneras de Morir', artista: '3AM', reproducciones: 830 },
+  { titulo: 'Dance Crip', artista: 'Trueno', reproducciones: 810 },
   { titulo: 'Shape of You', artista: 'Ed Sheeran', reproducciones: 790 },
+  { titulo: 'Stand by Me', artista: 'Prince Royce', reproducciones: 775 },
   { titulo: 'La Bicicleta', artista: 'Carlos Vives', reproducciones: 760 },
-  { titulo: 'Lento', artista: 'Cali y El Dandee', reproducciones: 720 },
+  { titulo: 'La Estrategia', artista: 'Cali y El Dandee', reproducciones: 720 },
+  { titulo: 'Pastel Con Nutella', artista: 'YSY A', reproducciones: 700 },
+  { titulo: 'Rockstar', artista: 'Duki', reproducciones: 680 },
+  { titulo: 'Trap de Verdad', artista: 'YSY A', reproducciones: 650 },
 ];
 
-
 export const RELACIONES_INICIALES: [string, string][] = [
- 
   ['Despacito', 'Hawái'],
   ['Despacito', 'Pepas'],
   ['Despacito', 'La Bicicleta'],
@@ -38,7 +57,6 @@ export const RELACIONES_INICIALES: [string, string][] = [
   ['Provenza', 'Bichota'],
   ['Pepas', 'Hawái'],
 
-
   ['La Bicicleta', 'Robarte un Beso'],
   ['Robarte un Beso', 'Traicionera'],
   ['Traicionera', 'Tacones Rojos'],
@@ -47,18 +65,49 @@ export const RELACIONES_INICIALES: [string, string][] = [
   ['Yo Te Esperaré', 'La Estrategia'],
   ['La Estrategia', 'Hawái'],
 
-
   ['Cómo Te Atreves', 'Besos en Guerra'],
   ['Besos en Guerra', 'Se Que Te Duele'],
   ['Se Que Te Duele', 'Traicionera'],
-
 
   ['Tal Vez', 'Las Flores Que Eran Para Ti'],
   ['Tal Vez', 'Mil Maneras de Morir'],
   ['Tal Vez', 'Yo Te Esperaré'],
   ['Las Flores Que Eran Para Ti', 'Se Que Te Duele'],
 
-  
+  ['Goteo', "She Don't Give a FO"],
+  ['Goteo', 'Givenchy'],
+  ['Givenchy', 'Rockstar'],
+  ['Loca', "She Don't Give a FO"],
+  ['Loca', 'Rockstar'],
+
+  ['El Amanecer', 'A Por Todo'],
+  ['A Por Todo', 'Pastel Con Nutella'],
+  ['Oro y Platino', 'Trap de Verdad'],
+  ['Goteo', 'Trap de Verdad'],
+  ['Givenchy', 'Oro y Platino'],
+
+  ['Mamichula', 'Wapo Traketero'],
+  ['Mamichula', 'Dance Crip'],
+  ['Adán y Eva', "She Don't Give a FO"],
+  ['Adán y Eva', 'Mamichula'],
+  ['Loca', 'Wapo Traketero'],
+
+  ['La Curiosidad', 'Viendo el Techo'],
+  ['Viendo el Techo', 'Otra Noche Más'],
+  ['Otra Noche Más', 'Pepas'],
+  ['La Curiosidad', 'Hawái'],
+
+  ['Darte un Beso', 'Corazón Sin Cara'],
+  ['Corazón Sin Cara', 'Stand by Me'],
+  ['Darte un Beso', 'Si Te Preguntan...'],
+  ['Si Te Preguntan...', 'Viendo el Techo'],
+  ['Darte un Beso', 'Traicionera'],
+  ['Stand by Me', 'Robarte un Beso'],
+
+  ['Mamichula', 'Bichota'],
+  ['Adán y Eva', 'Pepas'],
+  ['Tal Vez', 'El Amanecer'],
+
   ['Blinding Lights', 'Bad Guy'],
   ['Blinding Lights', 'Shape of You'],
   ['Blinding Lights', 'Billie Jean'],
